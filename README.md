@@ -18,6 +18,56 @@ The framework implements the following technical indicators:
 - Volume: OBV, MFI
 - Volatility: Bollinger Bands
 - Additional: Williams %R, ROC, ADX
+  
+## Strategy Combination Methodology
+1. Signal Generation Architecture
+The code implements strategy combination through a multi-layered approach:
+
+Individual Indicator Signals
+
+Each technical indicator (RSI, MACD, etc.) generates its own signals (-1, 0, 1)
+Signals are normalized across different indicators using consistent thresholds
+Implementation in generate_indicator_signals method:
+
+pythonCopydef generate_indicator_signals(self, data: pd.DataFrame, indicator: IndicatorConfig, params: dict) -> pd.Series
+
+Signal Combination Method
+
+Multiple indicators are combined using a weighted average approach
+Current implementation in generate_combined_strategy:
+
+pythonCopycombined_signals = signals.mean(axis=1)
+return pd.Series(np.where(combined_signals > 0.3, 1,
+                         np.where(combined_signals < -0.3, -1, 0)),
+                 index=data.index)
+
+
+## 2. Strategy Optimization Process
+The code employs several layers of optimization:
+
+Parameter Optimization
+
+Grid search across parameter spaces for each indicator
+Options for both standard and comprehensive parameter testing
+
+
+Indicator Combination Testing
+
+Tests combinations of 1 to 9 indicators
+Uses itertools.combinations for systematic combination generation
+
+
+Performance Evaluation
+
+Comprehensive metrics including:
+
+Risk-adjusted returns (Sharpe Ratio)
+Maximum drawdown
+Win rate
+Profit factor
+
+
+Composite scoring system for strategy ranking
 
 ## Requirements
 - Python 3.x
@@ -79,4 +129,10 @@ Reports are saved in CSV format with timestamps in the specified output director
 - Results are saved with timestamps for easy tracking
 - Comprehensive error handling and logging are implemented
 - Strategy parameters can be customized based on requirements
+- The current implementation provides a solid foundation for strategy development and testing. Its main strengths lie in computational efficiency and flexibility.
+- However, for production use, it would benefit from:
+- More sophisticated signal combination methods
+- Enhanced risk management
+- Robust validation framework
+- Market regime consideration
 

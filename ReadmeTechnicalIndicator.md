@@ -1,4 +1,4 @@
-## we're using the TA-Lib library for technical analysis and break down each technical indicator in our code
+## we're using the TA-Lib library for technical analysis lets break down each technical indicator in our code
 ## Each technical indicator in our code uses TA-Lib's optimized C/C++ implementations.
 ## Technical Analysis Implementation Using TA-Lib
 

@@ -179,24 +179,3 @@ def optimized_pipeline():
         results = pipeline.process(data)
 ```
 
-## 5. Performance Impact Estimates
-
-1. **GPU Acceleration**
-   - Technical Indicator Calculation: 10-20x speedup
-   - Strategy Testing: 5-10x speedup
-   - Overall Processing: 3-5x speedup
-
-2. **Memory Optimization**
-   - Data Loading: 2-3x speedup
-   - Memory Usage: 40-60% reduction
-   - Processing Large Datasets: 2-4x speedup
-
-3. **Vectorized Operations**
-   - Backtesting: 5-8x speedup
-   - Signal Generation: 3-5x speedup
-   - Overall Processing: 2-3x speedup
-
-4. **Distributed Computing**
-   - Multiple Stock Processing: Linear scaling with nodes
-   - Strategy Testing: Near-linear scaling
-   - Overall Processing: 8-10x speedup with 10 nodes
